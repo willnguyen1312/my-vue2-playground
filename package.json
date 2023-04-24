@@ -45,6 +45,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
     "lint-staged": "^11.1.2",
+    "lodash": "^4.17.21",
     "msw": "^1.2.1",
     "prettier": "^2.4.1",
     "sass": "^1.32.7",
