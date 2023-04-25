@@ -1,10 +1,27 @@
-import { render } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 
 import Stubs from "./components/Stubs";
 
 test("Form contains search button", () => {
-  const { getByText } = render(Stubs, {
+  render(Stubs, {
     stubs: ["FontAwesomeIcon"],
   });
-  expect(getByText("Search now")).toBeInTheDocument();
+
+  expect(screen.getByText("Search now")).toBeInTheDocument();
+});
+
+test("Form contains stubbed icon", () => {
+  const StubComponent = {
+    render(h) {
+      return h("p", "I'm stubbed");
+    },
+  };
+
+  render(Stubs, {
+    stubs: {
+      FontAwesomeIcon: StubComponent,
+    },
+  });
+
+  expect(screen.getByText("I'm stubbed")).toBeInTheDocument();
 });
