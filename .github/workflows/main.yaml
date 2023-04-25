@@ -44,8 +44,6 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
-        with:
-          working-directory: examples/basic-pnpm
 
       - name: Install dependencies
         run: pnpm install
