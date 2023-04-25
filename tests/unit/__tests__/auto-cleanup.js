@@ -1,5 +1,4 @@
 import { render } from "@testing-library/vue";
-import "@testing-library/jest-dom";
 
 // This just verifies that by importing VTL in an environment which supports
 // afterEach (like jest) we'll get automatic cleanup between tests.

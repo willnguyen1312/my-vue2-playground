@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render, waitFor, fireEvent } from "@testing-library/vue";
 import StopWatch from "./components/StopWatch.vue";
 

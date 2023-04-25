@@ -1,5 +1,4 @@
 import { render } from "@testing-library/vue";
-import "@testing-library/jest-dom";
 
 test("baseElement defaults to document.body", () => {
   const { baseElement } = render({ template: "<div />" });

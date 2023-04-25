@@ -1,22 +1,24 @@
-import "@testing-library/jest-dom";
-import axiosMock from "axios";
-import { render, fireEvent } from "@testing-library/vue";
+import { render, fireEvent, screen, waitFor } from "@testing-library/vue";
+import userEvent from "@testing-library/user-event";
+import { mockAxios } from "../axiosMock";
 import Component from "./components/Fetch.vue";
 
-test("mocks an API call when load-greeting is clicked", async () => {
-  axiosMock.get.mockResolvedValueOnce({
-    data: { greeting: "hello there" },
+test.only("mocks an API call when load-greeting is clicked", async () => {
+  mockAxios.onGet("/greeting").reply(200, {
+    data: { greeting: "Hello there" },
   });
+  const user = userEvent.setup();
 
-  const { html, getByText } = render(Component, {
+  const { html } = render(Component, {
     props: { url: "/greeting" },
   });
 
-  await fireEvent.click(getByText("Fetch"));
+  // Test loading state, no need to await
+  user.click(screen.getByText("Fetch"));
 
-  expect(axiosMock.get).toHaveBeenCalledTimes(1);
-  expect(axiosMock.get).toHaveBeenCalledWith("/greeting");
-  expect(getByText("hello there")).toBeInTheDocument();
+  expect(await screen.findByText("Loading")).toBeInTheDocument();
+
+  expect(await screen.findByText("Hello there")).toBeInTheDocument();
 
   // You can render component snapshots by using html(). However, bear in mind
   // that Snapshot Testing should not be treated as a replacement for regular
@@ -24,7 +26,9 @@ test("mocks an API call when load-greeting is clicked", async () => {
   // More about the topic: https://twitter.com/searls/status/919594505938112512
   expect(html()).toMatchInlineSnapshot(`
     <div><button>Fetch</button> <span>
-        hello there
-      </span></div>
+        Hello there
+      </span>
+      <!---->
+    </div>
   `);
 });

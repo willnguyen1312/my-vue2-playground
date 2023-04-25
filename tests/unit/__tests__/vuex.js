@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/vue";
 import Vue from "vue";
 import Vuex from "vuex";

@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import Select from "./components/Select";

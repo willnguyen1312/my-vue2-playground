@@ -1,7 +1,6 @@
 /* eslint-disable jest/no-conditional-in-test */
 /* eslint-disable jest/no-conditional-expect */
 
-import "@testing-library/jest-dom";
 import { render } from "@testing-library/vue";
 
 import About from "./components/Router/About.vue";
