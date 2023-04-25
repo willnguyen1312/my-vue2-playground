@@ -10,7 +10,7 @@ const fetchAMessage = () =>
   new Promise((resolve) => {
     // we are using random timeout here to fireEvent a real-time example
     // of an async operation calling a callback at a non-deterministic time
-    const randomTimeout = Math.floor(Math.random() * 100);
+    const randomTimeout = Math.floor(Math.random() * 10000);
 
     setTimeout(() => {
       resolve({ returnedMessage: "Hello World" });
