@@ -21,12 +21,10 @@ jobs:
         with:
           node-version: 18
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 7
-          run_install: false
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
