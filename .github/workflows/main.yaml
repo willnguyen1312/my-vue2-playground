@@ -28,6 +28,11 @@ jobs:
           version: 7
           run_install: false
 
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: examples/basic-pnpm
+
       - name: Get pnpm store directory
         id: pnpm-cache
         shell: bash
