@@ -42,9 +42,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-
       - name: Install dependencies
         run: pnpm install
 
