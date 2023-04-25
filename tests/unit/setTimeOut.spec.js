@@ -1,5 +1,4 @@
 import { mount } from "@vue/test-utils";
-import { waitFor } from "@testing-library/vue";
 
 import TimeOut from "./components/TimeOut";
 import { navigationTarget } from "../shared";
@@ -33,5 +32,5 @@ test("TimeOut component should work as expected", async () => {
   await wrapper.vm.$nextTick();
   jest.runAllTimers();
 
-  await waitFor(() => expect(window.location.href).toBe(navigationTarget));
+  expect(window.location.href).toBe(navigationTarget);
 });
