@@ -10,6 +10,8 @@ import { store } from "./components/Store/store";
 import App from "./components/Router/App.vue";
 import Home from "./components/Router/Home.vue";
 import About from "./components/Router/About.vue";
+import Fetch from "./components/Fetch.vue";
+import { mockAxios } from "../axiosMock";
 
 // A common testing pattern is to create a custom renderer for a specific test
 // file. This way, common operations such as registering a Vuex store can be
@@ -22,6 +24,7 @@ function renderVuexTestComponent(customStore) {
     { path: "/", component: Home },
     { path: "/about", component: About },
     { path: "/store", component: VuexTest },
+    { path: "/data", component: Fetch, props: { url: "/voila" } },
     { path: "*", redirect: "/about" },
   ];
   const user = userEvent.setup();
@@ -53,6 +56,21 @@ test("full app rendering", async () => {
   await user.click(screen.getByText("+"));
 
   expect(getByTestId("count-value")).toHaveTextContent("2");
+});
+
+test("navigate and fetch data on demand", async () => {
+  mockAxios.onGet("/voila").replyOnce(200, {
+    data: { greeting: "Life is Love" },
+  });
+
+  const { user } = renderVuexTestComponent();
+
+  const fetchComponentLink = screen.getByText("Data");
+  await user.click(fetchComponentLink);
+  user.click(screen.getByText("Fetch"));
+
+  expect(await screen.findByText("Loading")).toBeInTheDocument();
+  expect(await screen.findByText(/life is love/i)).toBeInTheDocument();
 });
 
 test("can render with vuex with defaults", async () => {
