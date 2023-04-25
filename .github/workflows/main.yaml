@@ -47,8 +47,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Run linting
+        run: pnpm lint
+
       - name: Run unit tests
-        run: pnpm run test:unit:run
+        run: pnpm test:unit:run
 
       - name: Run e2e tests
-        run: pnpm run test:e2e:run
+        run: pnpm test:e2e:run
