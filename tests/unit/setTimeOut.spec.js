@@ -3,6 +3,7 @@ import { mount } from "@vue/test-utils";
 import TimeOut from "./components/TimeOut";
 import { navigationTarget } from "../shared";
 
+// The window.location object is readonly in test environment so we need to mock it
 let lastLocation = window.location;
 
 beforeEach(() => {
