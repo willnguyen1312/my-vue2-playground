@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  name: "TestButton",
   props: {
     text: {
       type: String,
@@ -11,7 +12,7 @@ export default {
     },
   },
   methods: {
-    handleClick(e) {
+    handleClick() {
       this.$emit("click");
     },
   },

@@ -1,10 +1,10 @@
-import { render, fireEvent, screen, waitFor } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 import userEvent from "@testing-library/user-event";
 import { mockAxios } from "../axiosMock";
 import Component from "./components/Fetch.vue";
 
 test.only("mocks an API call when load-greeting is clicked", async () => {
-  mockAxios.onGet("/greeting").reply(200, {
+  mockAxios.onGet("/greeting").replyOnce(200, {
     data: { greeting: "Hello there" },
   });
   const user = userEvent.setup();

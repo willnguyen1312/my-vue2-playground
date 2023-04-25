@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "TestDirective",
   data() {
     return {
       text: "example text",

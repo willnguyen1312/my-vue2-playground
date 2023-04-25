@@ -54,6 +54,7 @@
 
 <script>
 export default {
+  name: "TestForm",
   data() {
     return {
       title: "",

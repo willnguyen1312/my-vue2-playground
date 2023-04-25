@@ -18,6 +18,7 @@ const fetchAMessage = () =>
   });
 
 export default {
+  name: "TestDisappearance",
   data() {
     return {
       loading: true,
