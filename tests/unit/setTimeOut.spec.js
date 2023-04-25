@@ -21,7 +21,6 @@ afterEach(() => {
   window.location = lastLocation;
   jest.useRealTimers();
   console.error.mockRestore();
-  jest.restoreAllMocks();
 });
 
 test("TimeOut component should work as expected", async () => {
