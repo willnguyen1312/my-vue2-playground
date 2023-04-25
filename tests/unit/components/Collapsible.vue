@@ -9,13 +9,14 @@
 
 <script>
 export default {
+  name: "TestCollapsible",
   data() {
     return {
       displayElement: false,
     };
   },
   methods: {
-    handleClick(e) {
+    handleClick() {
       this.displayElement = !this.displayElement;
     },
   },

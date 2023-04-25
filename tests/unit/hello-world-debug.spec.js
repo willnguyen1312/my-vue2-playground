@@ -1,9 +1,10 @@
-/* eslint-disable testing-library/no-debugging-utils */
 import { render } from "@testing-library/vue";
 import HelloWorld from "./components/HelloWorld";
 
 beforeEach(() => {
-  jest.spyOn(console, "log").mockImplementation(() => {});
+  jest.spyOn(console, "log").mockImplementation(() => {
+    // Do nothing.
+  });
 });
 
 afterEach(() => {

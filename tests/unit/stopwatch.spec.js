@@ -38,7 +38,9 @@ test("updates component state", async () => {
 });
 
 test("unmounts a component", async () => {
-  jest.spyOn(console, "error").mockImplementation(() => {});
+  jest.spyOn(console, "error").mockImplementation(() => {
+    // Do nothing.
+  });
 
   const { unmount, isUnmounted, getByText } = render(StopWatch);
   await fireEvent.click(getByText("Start"));

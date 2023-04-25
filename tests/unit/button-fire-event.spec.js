@@ -122,7 +122,9 @@ const eventTypes = [
 ];
 
 beforeEach(() => {
-  jest.spyOn(console, "warn").mockImplementation(() => {});
+  jest.spyOn(console, "warn").mockImplementation(() => {
+    // DO nothing.
+  });
 });
 
 afterEach(() => {

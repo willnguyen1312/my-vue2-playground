@@ -13,6 +13,7 @@
 // For the sake of demoing scopedSlots, this Card component
 // passes a simple string down to its default slot.
 export default {
+  name: "TestCard",
   data() {
     return {
       content: "Scoped content!",

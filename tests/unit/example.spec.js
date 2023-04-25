@@ -1,7 +1,7 @@
 import axios from "axios";
 import { render, screen } from "@testing-library/vue";
 import HelloWorld from "@/components/HelloWorld.vue";
-import { mockAxios } from "./axiosMock";
+import { mockAxios } from "../axiosMock";
 
 describe("HelloWorld.vue", () => {
   it("renders props.msg when passed", () => {
@@ -9,7 +9,7 @@ describe("HelloWorld.vue", () => {
     render(HelloWorld, {
       propsData: { msg },
     });
-    // expect(wrapper.text()).toMatch(msg);
+
     expect(
       screen.getByRole("heading", {
         name: /new message/i,
@@ -17,8 +17,8 @@ describe("HelloWorld.vue", () => {
     ).toBeInTheDocument();
   });
 
-  it("should work", async () => {
-    mockAxios.onGet("/users").reply(200, {
+  it("should mock axios properly", async () => {
+    mockAxios.onGet("/users").replyOnce(200, {
       users: [{ id: 1, name: "John Smith" }],
     });
 

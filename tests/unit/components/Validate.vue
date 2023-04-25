@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: "TestValidate",
   data: () => ({
     username: "",
     password: "",

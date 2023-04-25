@@ -8,7 +8,9 @@ import Form from "./components/Form";
 // Read 'What queries should I use?' for additional context:
 // https://testing-library.com/docs/guide-which-query
 test("Review form submits", async () => {
-  jest.spyOn(console, "warn").mockImplementation(() => {});
+  jest.spyOn(console, "warn").mockImplementation(() => {
+    // Do nothing.
+  });
   const fakeReview = {
     title: "An Awesome Movie",
     director: "Stephen Spielberg",
