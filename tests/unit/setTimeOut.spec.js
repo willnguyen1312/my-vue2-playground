@@ -23,7 +23,6 @@ afterEach(() => {
   console.error.mockRestore();
 });
 
-// In this test file we showcase several ways to interact with a Select element.
 test("TimeOut component should work as expected", async () => {
   const wrapper = mount(TimeOut, {
     methods: {
