@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { render, screen, fireEvent } from "@testing-library/vue";
+import { render, screen } from "@testing-library/vue";
 import _ from "lodash";
 import Vue from "vue";
 import Vuex from "vuex";
@@ -75,7 +75,6 @@ test("can render with vuex with custom initial state", async () => {
 
 test("can render with vuex with custom store", async () => {
   // This is a silly store that can never be changed.
-  // eslint-disable-next-line no-shadow
   const store = {
     state: { count: 1000 },
     actions: {
@@ -84,8 +83,6 @@ test("can render with vuex with custom store", async () => {
     },
   };
 
-  // Notice how here we are not using the helper method, because there's no
-  // need to do that.
   const { getByTestId, getByText } = render(VuexTest, { store });
   const user = userEvent.setup();
 
@@ -125,9 +122,11 @@ test("can render with an instantiated Vuex store", async () => {
     }),
   });
 
-  await fireEvent.click(getByText("+"));
+  const user = userEvent.setup();
+
+  await user.click(getByText("+"));
   expect(getByTestId("count-value")).toHaveTextContent("4");
 
-  await fireEvent.click(getByText("-"));
+  await user.click(getByText("-"));
   expect(getByTestId("count-value")).toHaveTextContent("3");
 });
