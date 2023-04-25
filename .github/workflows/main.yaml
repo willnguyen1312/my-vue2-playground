@@ -16,9 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -36,6 +33,9 @@ jobs:
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
 
       - uses: actions/cache@v3
         name: Setup pnpm cache
