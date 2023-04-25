@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
-import { render, fireEvent, screen } from "@testing-library/vue";
+import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/vue";
 import _ from "lodash";
 import Vue from "vue";
 import Vuex from "vuex";
@@ -24,47 +25,51 @@ function renderVuexTestComponent(customStore) {
     { path: "/store", component: VuexTest },
     { path: "*", redirect: "/about" },
   ];
+  const user = userEvent.setup();
   // Render the component and merge the original store and the custom one
   // provided as a parameter. This way, we can alter some behaviors of the
   // initial implementation.
-  return render(App, {
-    store: { ..._.cloneDeep(store), ...customStore },
-    routes,
-  });
+  return {
+    ...render(App, {
+      store: { ..._.cloneDeep(store), ...customStore },
+      routes,
+    }),
+    user,
+  };
 }
 
 test("full app rendering", async () => {
   // Notice how we pass a `routes` object to our render function.
-  const { getByTestId } = renderVuexTestComponent();
+  const { getByTestId, user } = renderVuexTestComponent();
 
   expect(getByTestId("location-display")).toHaveTextContent("/");
 
-  await fireEvent.click(getByTestId("store-link"));
+  await user.click(getByTestId("store-link"));
 
   // screen.logTestingPlaygroundURL();
   expect(screen.getByText(/\/store/i)).toBeInTheDocument();
   // expect(getByTestId("location-display")).toHaveTextContent("/store");
 
-  await fireEvent.click(screen.getByText("+"));
-  await fireEvent.click(screen.getByText("+"));
+  await user.click(screen.getByText("+"));
+  await user.click(screen.getByText("+"));
 
   expect(getByTestId("count-value")).toHaveTextContent("2");
 });
 
 test("can render with vuex with defaults", async () => {
-  const { getByTestId, getByText } = renderVuexTestComponent();
-  await fireEvent.click(getByTestId("store-link"));
-  await fireEvent.click(getByText("+"));
+  const { getByTestId, getByText, user } = renderVuexTestComponent();
+  await user.click(getByTestId("store-link"));
+  await user.click(getByText("+"));
 
   expect(getByTestId("count-value")).toHaveTextContent("1");
 });
 
 test("can render with vuex with custom initial state", async () => {
-  const { getByTestId, getByText } = renderVuexTestComponent({
+  const { getByTestId, getByText, user } = renderVuexTestComponent({
     state: { count: 3 },
   });
-  await fireEvent.click(getByTestId("store-link"));
-  await fireEvent.click(getByText("-"));
+  await user.click(getByTestId("store-link"));
+  await user.click(getByText("-"));
 
   expect(getByTestId("count-value")).toHaveTextContent("2");
 });
@@ -83,11 +88,12 @@ test("can render with vuex with custom store", async () => {
   // Notice how here we are not using the helper method, because there's no
   // need to do that.
   const { getByTestId, getByText } = render(VuexTest, { store });
+  const user = userEvent.setup();
 
-  await fireEvent.click(getByText("+"));
+  await user.click(getByText("+"));
   expect(getByTestId("count-value")).toHaveTextContent("1000");
 
-  await fireEvent.click(getByText("-"));
+  await user.click(getByText("-"));
   expect(getByTestId("count-value")).toHaveTextContent("1000");
 });
 

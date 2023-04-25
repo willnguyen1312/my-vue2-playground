@@ -1,4 +1,5 @@
 import { render, fireEvent } from "@testing-library/vue";
+import userEvent from "@testing-library/user-event";
 import Button from "./components/Button";
 
 const eventTypes = [
@@ -226,10 +227,10 @@ test("fireEvent.update should not crash with input file", async () => {
   const inputEl = getByTestId("test-update");
 
   // You could replace the lines below with
-  // userEvent.upload(inputEl, file)
-  Object.defineProperty(inputEl, "files", {
-    value: [file],
-  });
+  userEvent.upload(inputEl, file);
+  // Object.defineProperty(inputEl, "files", {
+  //   value: [file],
+  // });
 
   await fireEvent.update(inputEl);
 
