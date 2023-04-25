@@ -21,15 +21,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
           version: 7
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          working-directory: examples/basic-pnpm
+          run_install: false
 
       - name: Get pnpm store directory
         id: pnpm-cache
@@ -44,6 +41,11 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: examples/basic-pnpm
 
       - name: Install dependencies
         run: pnpm install
