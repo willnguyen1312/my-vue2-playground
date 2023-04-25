@@ -30,8 +30,12 @@ test("TimeOut component should work as expected", async () => {
     },
   });
 
+  // Wait for Vue instance to complete its update lifecycle
   await wrapper.vm.$nextTick();
-  jest.runAllTimers();
 
+  // Flush all pending timers
+  jest.runOnlyPendingTimers();
+
+  // Assure that the user is redirected to the correct page
   expect(window.location.href).toBe(navigationTarget);
 });
