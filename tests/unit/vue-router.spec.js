@@ -13,7 +13,7 @@ const routes = [
   { path: "*", redirect: "/about" },
 ];
 
-test.only("try shallow", async () => {
+test("try shallow", async () => {
   const wrapper = shallowMount(AboutParent);
   expect(wrapper.html()).toMatchInlineSnapshot(`
     <div>
