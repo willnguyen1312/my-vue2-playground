@@ -1,16 +1,27 @@
 import { render, fireEvent } from "@testing-library/vue";
-import { createLocalVue } from "@vue/test-utils";
+import { createLocalVue, shallowMount } from "@vue/test-utils";
 import VueRouter from "vue-router";
 
 import App from "./components/Router/App.vue";
 import Home from "./components/Router/Home.vue";
 import About from "./components/Router/About.vue";
+import AboutParent from "./components/Router/AboutParent.vue";
 
 const routes = [
   { path: "/", component: Home },
   { path: "/about", component: About },
   { path: "*", redirect: "/about" },
 ];
+
+test.only("try shallow", async () => {
+  const wrapper = shallowMount(AboutParent);
+  expect(wrapper.html()).toMatchInlineSnapshot(`
+    <div>
+      <h1>About Parent</h1>
+      <about-stub></about-stub>
+    </div>
+  `);
+});
 
 test("full app rendering/navigating", async () => {
   const localVue = createLocalVue();
