@@ -1,4 +1,5 @@
 import { render, fireEvent } from "@testing-library/vue";
+import { createLocalVue } from "@vue/test-utils";
 import VueRouter from "vue-router";
 
 import App from "./components/Router/App.vue";
@@ -12,8 +13,15 @@ const routes = [
 ];
 
 test("full app rendering/navigating", async () => {
+  const localVue = createLocalVue();
+  localVue.use(VueRouter);
+  const router = new VueRouter();
+
   // Notice how we pass a `routes` object to our render function.
-  const { getByTestId } = render(App, { routes });
+  const { getByTestId } = render(App, {
+    localVue,
+    router,
+  });
 
   expect(getByTestId("location-display")).toHaveTextContent("/");
 
