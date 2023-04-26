@@ -19,7 +19,7 @@ describe("mocking axios requests", function () {
         data: faker.random.numeric(4),
       };
       // Match against an exact URL value
-      moxios.stubRequest("/say/hello", {
+      moxios.stubRequest("GET", "/say/hello", {
         status: 200,
         response: mockedData,
       });

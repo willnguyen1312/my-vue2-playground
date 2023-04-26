@@ -121,8 +121,8 @@ devDependencies:
     specifier: ^4.17.21
     version: 4.17.21
   moxios:
-    specifier: ^0.4.0
-    version: 0.4.0(axios@1.3.6)
+    specifier: github:willnguyen1312/moxios#main
+    version: github.com/willnguyen1312/moxios/36bb51296ef831fd404f709bfb24dc3a1f2740e7(axios@1.3.6)
   msw:
     specifier: ^1.2.1
     version: 1.2.1(typescript@4.9.5)
@@ -8198,14 +8198,6 @@ packages:
     resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
     dev: true
 
-  /moxios@0.4.0(axios@1.3.6):
-    resolution: {integrity: sha512-r+7DOsTcoTAwY6TGIDtjeTEBXMW8aGgk74MfASOC1tgYXD8Kq+cnqQHUdMnvfjf/CK7Pg/Wo52ohqy5zlyv9XQ==}
-    peerDependencies:
-      axios: '>= 0.13.0'
-    dependencies:
-      axios: 1.3.6
-    dev: true
-
   /mrmime@1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}
     engines: {node: '>=10'}
@@ -11548,4 +11540,15 @@ packages:
       is-ci: 1.2.1
       normalize-path: 1.0.0
       strip-indent: 2.0.0
+    dev: true
+
+  github.com/willnguyen1312/moxios/36bb51296ef831fd404f709bfb24dc3a1f2740e7(axios@1.3.6):
+    resolution: {tarball: https://codeload.github.com/willnguyen1312/moxios/tar.gz/36bb51296ef831fd404f709bfb24dc3a1f2740e7}
+    id: github.com/willnguyen1312/moxios/36bb51296ef831fd404f709bfb24dc3a1f2740e7
+    name: moxios
+    version: 0.4.0
+    peerDependencies:
+      axios: '>= 0.13.0'
+    dependencies:
+      axios: 1.3.6
     dev: true
